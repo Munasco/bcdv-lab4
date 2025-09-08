@@ -1,14 +1,22 @@
 # BCDV Lab4 - Ansible Inventory and VM Configuration
 
+**Student Name:** Munachi Ernest-Eze  
+**Course:** BCDV 4033  
+**Assignment:** Lab 4 - Ansible Inventory and VM Configuration  
+**Due Date:** June 14, 2025 11:59 PM  
+**GitHub Repository:** https://github.com/Munasco/bcdv-lab4
+
 This lab demonstrates how to create Ansible inventory files and connect to Azure VMs for automated configuration management.
 
-## 📋 Lab Overview
+## 📋 Assignment Overview
 
 - **Lab Name:** BCDV Lab4
 - **Focus:** Ansible inventory management and VM automation
-- **Target VM:** Azure Ubuntu 20.04 LTS
+- **Target VM:** Azure Ubuntu 20.04 LTS (created in previous Terraform lab)
 - **Public IP:** 172.191.182.41
+- **Private IP:** 10.0.2.4
 - **User:** azureuser
+- **Web Server:** http://172.191.182.41
 
 ## 🗂️ Project Structure
 
@@ -182,8 +190,61 @@ For issues with this lab, check:
 3. SSH keys are correctly configured
 4. Network connectivity to Azure VM
 
+## 📎 Assignment Submission
+
+### What to Submit:
+
+1. **GitHub Repository Link:**  
+   https://github.com/Munasco/bcdv-lab4
+
+2. **Screenshots:** (Located in `screenshots/` folder)
+   - Ansible ping connection test
+   - Test connection playbook results  
+   - VM setup playbook execution
+   - Final verification results
+   - Working web server in browser
+   - Azure portal showing running VM
+   - Network security group rules
+   - GitHub repository overview
+
+3. **Live Demonstration URLs:**
+   - **Web Server:** http://172.191.182.41
+   - **SSH Access:** `ssh azureuser@172.191.182.41`
+
+### 🎆 Lab Completion Status
+
+✅ **COMPLETED SUCCESSFULLY**
+
+- ✓ Ansible inventory file created and configured
+- ✓ Successfully connected to Azure VM via Ansible
+- ✓ Automated VM configuration using playbooks
+- ✓ Installed essential software packages
+- ✓ Deployed and configured Nginx web server
+- ✓ Created custom web page showing VM information
+- ✓ All verification tests passing
+- ✓ Documentation complete with usage instructions
+
+### 📨 Technical Implementation
+
+**Infrastructure:**
+- Azure VM: Ubuntu 20.04 LTS (Standard_B1s)
+- Resource Group: rg-terraform-demo
+- Location: East US
+- Network: Secure with SSH (22) and HTTP (80) access
+
+**Ansible Configuration:**
+- Inventory file with connection details
+- SSH key authentication (no passwords)
+- Automated playbooks for system configuration
+- Comprehensive verification and testing
+
+**Software Deployed:**
+- Web Server: Nginx with custom HTML page
+- Development tools: git, curl, wget, vim, htop, tree
+- Runtime: nodejs, npm, python3-pip
+
 ---
 
 **Lab completed successfully! 🎉**
 
-This lab demonstrates practical Ansible usage for infrastructure automation and configuration management.
+This lab demonstrates practical Ansible usage for infrastructure automation and configuration management, meeting all course objectives for BCDV 4033 Lab 4.
