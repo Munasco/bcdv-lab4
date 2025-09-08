@@ -1,0 +1,17 @@
+---
+azure_vms:
+  hosts:
+    demo-vm:
+      ansible_host: 172.191.182.41
+      ansible_user: azureuser
+      ansible_ssh_private_key_file: ~/.ssh/id_rsa
+      ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+      vm_name: demo-vm-vm
+      vm_location: eastus
+      vm_resource_group: rg-terraform-demo
+      private_ip: 10.0.2.4
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    ansible_connection: ssh
+    ansible_become: true
+    ansible_become_method: sudo
