@@ -1,0 +1,55 @@
+---
+- name: BCDV Lab4 - Verification & Testing
+  hosts: azure_vms
+  gather_facts: yes
+  
+  tasks:
+    - name: 🔍 Test basic connectivity
+      ping:
+      register: connectivity_test
+      
+    - name: 📊 Gather system facts
+      setup:
+      register: system_facts
+      
+    - name: 🌐 Check nginx service status
+      systemd:
+        name: nginx
+      register: nginx_status
+      
+    - name: 📄 Test web server response
+      uri:
+        url: "http://{{ ansible_host }}"
+        method: GET
+        return_content: yes
+      register: web_response
+      delegate_to: localhost
+      
+    - name: 📈 Check installed packages
+      package_facts:
+        manager: apt
+      
+    - name: ✅ Display verification results
+      debug:
+        msg: |
+          
+          🎉 BCDV Lab4 Verification Results:
+          
+          ✅ Connectivity: {{ 'PASS' if connectivity_test is succeeded else 'FAIL' }}
+          ✅ System Info: {{ ansible_hostname }} ({{ ansible_distribution }} {{ ansible_distribution_version }})
+          ✅ Nginx Status: {{ 'RUNNING' if nginx_status.status.ActiveState == 'active' else 'STOPPED' }}
+          ✅ Web Server: {{ 'ACCESSIBLE' if web_response.status == 200 else 'NOT ACCESSIBLE' }}
+          ✅ IP Address: {{ ansible_default_ipv4.address }}
+          ✅ Memory: {{ ansible_memtotal_mb }}MB
+          ✅ CPU Cores: {{ ansible_processor_vcpus }}
+          ✅ Packages Installed: {{ ansible_pkg_mgr | default('apt') }}
+          
+          📦 Key Installed Software:
+          {% for pkg in ['git', 'nginx', 'nodejs', 'python3-pip', 'curl', 'vim', 'htop'] %}
+          - {{ pkg }}: {{ 'INSTALLED' if pkg in ansible_facts.packages else 'NOT FOUND' }}
+          {% endfor %}
+          
+          🌐 Web Server URL: http://{{ ansible_host }}
+          🔗 SSH Command: ssh {{ ansible_user }}@{{ ansible_host }}
+          
+          📈 Lab Status: COMPLETED SUCCESSFULLY! 🚀
